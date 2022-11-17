@@ -1,6 +1,6 @@
 {
   "name": "@google-cloud/opentelemetry-resource-util",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Resource util used by other @google-cloud/opentelemetry* packages",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -39,9 +39,9 @@
     "registry": "https://wombat-dressing-room.appspot.com"
   },
   "devDependencies": {
-    "@opentelemetry/api": "1.1.0",
-    "@opentelemetry/resources": "1.1.0",
-    "@opentelemetry/semantic-conventions": "1.1.0",
+    "@opentelemetry/api": "1.3.0",
+    "@opentelemetry/resources": "1.8.0",
+    "@opentelemetry/semantic-conventions": "1.8.0",
     "@types/mocha": "9.1.1",
     "@types/node": "14.18.31",
     "codecov": "3.8.3",
@@ -49,9 +49,10 @@
     "mocha": "9.2.2",
     "nyc": "15.1.0",
     "ts-mocha": "9.0.2",
-    "typescript": "4.8.4"
+    "typescript": "4.9.3"
   },
   "peerDependencies": {
+    "@opentelemetry/api": "^1.0.0",
     "@opentelemetry/resources": "^1.0.0",
     "@opentelemetry/semantic-conventions": "^1.0.0"
   }

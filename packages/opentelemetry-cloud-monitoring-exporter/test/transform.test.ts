@@ -25,9 +25,9 @@ import {
   Point as OTPoint,
   MeterProvider,
   Histogram,
-} from '@opentelemetry/sdk-metrics-base';
+} from '@opentelemetry/sdk-metrics';
 import {SemanticResourceAttributes} from '@opentelemetry/semantic-conventions';
-import {ValueType as OTValueType, Attributes} from '@opentelemetry/api-metrics';
+import {ValueType as OTValueType, Attributes} from '@opentelemetry/api';
 import {MetricKind, ValueType, MetricDescriptor} from '../src/types';
 import {Resource} from '@opentelemetry/resources';
 
@@ -280,16 +280,15 @@ describe('transform', () => {
     it('should return a Google Cloud Monitoring Metric for an observer', async () => {
       const meter = new MeterProvider().getMeter('test-meter');
       const labels: Attributes = {keya: 'value1', keyb: 'value2'};
-      meter.createObservableCounter(
+      const observableCounter = meter.createObservableCounter(
         METRIC_NAME,
         {
           description: METRIC_DESCRIPTION,
           valueType: OTValueType.INT,
-        },
-        result => {
-          result.observe(int64Value, labels);
         }
       );
+      observableCounter.addCallback(async (result) => result.observe(int64Value, labels));
+
       const int64Value = 0;
       await meter.collect();
       const [record] = meter.getProcessor().checkPointSet();

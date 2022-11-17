@@ -20,7 +20,7 @@ import * as sinon from 'sinon';
 import {MetricExporter} from '../src';
 import {ExportResult, ExportResultCode} from '@opentelemetry/core';
 import {MeterProvider} from '@opentelemetry/sdk-metrics-base';
-import {Attributes} from '@opentelemetry/api-metrics';
+import {Attributes} from '@opentelemetry/api';
 
 import type {monitoring_v3} from 'googleapis';
 

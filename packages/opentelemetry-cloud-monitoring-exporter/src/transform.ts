@@ -20,7 +20,7 @@ import {
   Point as OTPoint,
   PointValueType,
 } from '@opentelemetry/sdk-metrics-base';
-import {ValueType as OTValueType} from '@opentelemetry/api-metrics';
+import {ValueType as OTValueType} from '@opentelemetry/api';
 import {mapOtelResourceToMonitoredResource} from '@google-cloud/opentelemetry-resource-util';
 import {
   MetricDescriptor,
@@ -32,6 +32,7 @@ import {
 import * as path from 'path';
 import * as os from 'os';
 import type {monitoring_v3} from 'googleapis';
+import { InstrumentType } from '@opentelemetry/sdk-metrics';
 
 const OPENTELEMETRY_TASK = 'opentelemetry_task';
 const OPENTELEMETRY_TASK_DESCRIPTION = 'OpenTelemetry task identifier';
@@ -69,7 +70,7 @@ function transformDisplayName(displayNamePrefix: string, name: string): string {
 }
 
 /** Transforms a OpenTelemetry Type to a StackDriver MetricKind. */
-function transformMetricKind(kind: OTMetricKind): MetricKind {
+function transformMetricKind(kind: InstrumentType): MetricKind {
   switch (kind) {
     case OTMetricKind.COUNTER:
     case OTMetricKind.OBSERVABLE_COUNTER:
